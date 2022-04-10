@@ -29,5 +29,5 @@ services:
       POSTGRES_PASSWORD: strapi
       POSTGRES_DB: strapi
 
-  volumes:
+volumes:
   strapidata:
