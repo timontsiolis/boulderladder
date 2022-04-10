@@ -4,3 +4,6 @@
 [submodule "frontend"]
 	path = frontend
 	url = git@github.com:timontsiolis/boulderladder.git
+[submodule "frontend-2"]
+	path = frontend-2
+	url = git@github.com:timontsiolis/frontend.git
