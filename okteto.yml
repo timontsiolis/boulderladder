@@ -11,7 +11,7 @@ build:
   #  - OKTETO_BUILD_NEXTJS_TAG: image tag
   nextjs:
     context: frontend
-    dockerfile: frontend\Dockerfile
+    dockerfile: Dockerfile
 
 # The deploy section defines how to deploy your development environment
 # More info: https://www.okteto.com/docs/reference/manifest/#deploy
