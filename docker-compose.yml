@@ -18,15 +18,15 @@ services:
     depends_on:
       - db
 
-    nextjs:
-      ports:
-        - 3000:3000
-      build:
-        context: ./frontend/
-        dockerfile: Dockerfile
-      volumes:
-        - /usr/src/app/node_modules
-        - /usr/src/app/.next
+  nextjs:
+    ports:
+      - 3000:3000
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    volumes:
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
 
   db:
     container_name: postgres
