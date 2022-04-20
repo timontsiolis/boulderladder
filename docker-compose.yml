@@ -3,9 +3,7 @@ version: '3'
 services:
   strapi:
     container_name: strapi
-    build:
-      context: ./backend/
-      dockerfile: Dockerfile
+    image: strapi/strapi
     environment:
       - DATABASE_CLIENT=postgres
       - DATABASE_HOST=db
