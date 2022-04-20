@@ -13,6 +13,8 @@ services:
       - DATABASE_PASSWORD=strapi
     ports:
       - 1337:1337
+    networks:
+      - strapi-app-network
     volumes:
       - ./app/backend:/srv/app/backend
     depends_on:
@@ -24,6 +26,8 @@ services:
     build:
       context: ./frontend/
       dockerfile: Dockerfile
+    networks:
+      - strapi-app-network
     volumes:
       - /usr/src/app/node_modules
       - /usr/src/app/.next
@@ -38,6 +42,10 @@ services:
       POSTGRES_USER: strapi
       POSTGRES_PASSWORD: strapi
       POSTGRES_DB: strapi
+
+networks:
+  strapi-app-network:
+    driver: bridge
 
 volumes:
   strapidata:
