@@ -4,22 +4,20 @@ services:
   strapi:
     build:
       context: ./backend
-    container_name: strapi_v4_app
+    container_name: strapi
     restart: unless-stopped
     environment:
       NODE_ENV: production
       DATABASE_CLIENT: postgres
       DATABASE_HOST: db
       DATABASE_PORT: 5432
-      DATABASE_NAME: app
-      DATABASE_USERNAME: db_username
-      DATABASE_PASSWORD: db_password
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
     volumes:
-      - ./app:/srv/app
-    networks:
-      - strapi-app-network
+      - ./strapi-app:/usr/src/api/strapi-app
     ports:
-      - 127.0.0.1:8000:1337
+      - 1337:1337
     depends_on:
       - db
 
@@ -28,8 +26,8 @@ services:
       - 3000:3000
     build:
       context: ./frontend/
-    networks:
-      - strapi-app-network
+    environment:
+      - API_KEY=f736c131192b7bd991ce363992e0b1a4c7bf5d593b8673a11e8fc4b938d2439d0c545030d5b6f961984954e06ed5eb07530fa4096675f4f4eab8fc7d11d22fab33052a2da88988b7f59504795e5288f61987beeb2e52ff6fd42eb647a3d6717daf8f389e15b6ac5118c29d545ebd14c0addc3330c0b0eadfa5d9320e7574fa70
     volumes:
       - /usr/src/app/node_modules
       - /usr/src/app/.next
@@ -41,15 +39,13 @@ services:
     image: postgres
     restart: always
     volumes:
-      - strapidata:/data/db
+      - ./db:/data/db
+    ports:
+      - 5432:5432
     environment:
       POSTGRES_USER: strapi
       POSTGRES_PASSWORD: strapi
       POSTGRES_DB: strapi
-
-networks:
-  strapi-app-network:
-    driver: bridge
 
 volumes:
   strapidata:
